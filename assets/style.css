@@ -1,0 +1,58 @@
+.html {
+    scroll-behavior: smooth;
+}
+ul {
+    background-color: var(--bg-secondary);
+}
+div .card-body {
+    background-color: azure;
+    color: black
+}
+.card-body{
+    padding: 1px 0 1px 10px;
+    margin: -410px -200px 200px 300px ;
+    max-width: 50rem;
+}
+
+.five-cards {
+    background-color: var(--bs-secondary-subtle-color);
+    color: white;
+    flex-direction: row;
+}
+
+#five-day {
+    padding: 1px 0 1px 10px;
+    margin: -150px -200px 100px 400px;
+    max-width: 50rem;
+}
+.col-sm .card{
+    border-radius: 30px;
+    border: 2px solid white;
+    height: 200px;
+    width: 140px;
+    margin-top: -8px;
+    padding-top: 15px;
+}
+
+.col-sm .card div{
+    text-align: center;
+    font-size: 0.9em;
+    font-weight: bolder;
+    flex-direction: row;
+    
+}
+.col-sm .card p{
+    text-align: left;
+    font-size: 0.8em;
+    color: black;
+    font-weight: bold;
+    flex-direction: row;
+}
+
+.card-title {
+    color: black;
+}
+
+h5 {
+    color: black;
+}
