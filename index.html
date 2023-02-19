@@ -54,10 +54,11 @@
 
 <!-- Card for current weather: -->
 <section class = "container">
-    <div class = "card card-body current-view" id = "current-view">
+    <div class = "card card-body current-view text-center" id = "current-view">
         <div class = "card-title" id = "city-info">
             <h2 id = "name-city">City Name: </h2>
             <p id = "current-date"></p>
+            <img id = "weather-icon">
             <h5 class = "card-subtitle"> Temperature: <span id = "temp-city"></span></h5>
             <h5 class = "card-subtitle"> Humidity: <span id = "hum-city"> </span></h5>
             <h5 class = "card-subtitle"> Wind Speed: <span id = "wind-speed"></span> </h5>
@@ -67,57 +68,63 @@
 
 <!-- 5 Day Forecast:  -->
 <section id = 'five-day'>
-    <h5>5 Day Forecast</h5>
+    <h5 class = "text-center">5 Day Forecast</h5>
+    <br>
     <div class = "row">
         <div class = "card five-cards">
             <div class="col-sm">
 
-                <div class="card">
+                <div class="card h-100">
                     <div class="card-title" id="day0">Date</div>
                     <img class="icons" id="icon0">
                     <p id="highday0">High:</p>
                     <p id="lowday0">Low:</p>
                     <p id="humday0">Humidity:</p>
+                    <p id="windspeed0">Wind Speed:</p>
                 </div>
             </div>
 
             <div class="col-sm">
-                <div class="card">
+                <div class="card h-100">
                     <div class="card-title" id="day1">Date</div>
                     <img class="icons" id="icon1">
                     <p id="highday1">High:</p>
                     <p id="lowday1">Low:</p>
                     <p id="humday1">Humidity:</p>
+                    <p id="windspeed1">Wind Speed:</p>
                 </div>
             </div>
 
             <div class="col-sm">
-                <div class="card">
+                <div class="card h-100">
                     <div class="card-title" id="day2">Date</div>
                     <img class="icons" id="icon2">
                     <p id="highday2">High:</p>
                     <p id="lowday2">Low:</p>
                     <p id="humday2">Humidity:</p>
+                    <p id="windspeed2">Wind Speed:</p>
                 </div>
             </div>
 
             <div class="col-sm">
-                <div class="card">
+                <div class="card h-100">
                     <div class="card-title" id="day3">Date</div>
                     <img class="icons" id="icon3">
                     <p id="highday3">High:</p>
                     <p id="lowday3">Low:</p>
                     <p id="humday3">Humidity:</p>
+                    <p id="windspeed3">Wind Speed:</p>
                 </div>
             </div>
 
             <div class="col-sm">
-                <div class="card">
+                <div class="card h-100">
                     <div class="card-title" id="day4">Date</div>
                     <img class="icons" id="icon4">
                     <p id="highday4">High:</p>
                     <p id="lowday4">Low:</p>
                     <p id="humday4">Humidity:</p>
+                    <p id="windspeed4">Wind Speed:</p>
             </div>
         </div>
     </div>

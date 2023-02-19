@@ -56,3 +56,12 @@ div .card-body {
 h5 {
     color: black;
 }
+/* Media Query for bigger screens since I coded this on a laptop lol */
+
+@media (min-width: 1500px) {
+    #five-day {
+        padding: 1px 0 1px 10px;
+        margin: -150px -300px 200px 600px;
+        max-width: 50rem;
+    }
+}

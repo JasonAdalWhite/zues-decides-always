@@ -36,18 +36,93 @@ function citySearch() {
     $("#temp-city").text($currentTemp);
     $("#hum-city").text($currentHum);
     $("#wind-speed").text($currentWind);
-    $("weathericon").attr({"src": $currentIconURL, "alt": "Current Weather Icon"});
+    $("weather-icon").attr({"src": $currentIconURL, "alt": "Current Weather Icon"});
 
+    let lat = response.coord.lat;
+    let lon = response.coord.lon;
+    /* Query for One Call API - this will give us our info for 5 Day Forecast cards */
     let secondQueryURL =
-        "api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + apiKey;
+        "https://api.openweathermap.org/data/3.0/onecall?lat=" + lat + "&lon=" + lon +
+        "&exclude=hourly&units=imperial&appid=" + apiKey;
     $.ajax({
         url: secondQueryURL,
         method: "GET"
     }).then(function (response) {
         console.log(response);
-    }) 
-})
-};
+        // Store future days in an array to hold and iterate through data:
+        let days = [];
+            // get UNIX dt from response, skipping [0] as it is current day
+            for (i = 1; i < 6; i++) {
+                days[i] = response.daily[i].dt;
+            }
+            days = days.filter(item => item);
+            // convert, extract, display:
+            for (i = 0; i < days.length; i++) {
+                // first convert each index to moment Using Unix
+                days[i] = moment.unix(days[i]);
+                // Change date format 
+                days[i] = days[i].format("ddd,ll");
+                // display dates in HTML
+                $("#day" + i).text(days[i]);
+            }
+        console.log(days);
+
+        // Initialization for arrays needed to store future weather data:
+        let highTemps = [];
+        let lowTemps = [];
+        let futureHumidity = [];
+        let futureWindSpeed = [];
+        let icons = [];
+        let iconsURL = [];
+        // Parse the decimals and display High Temp in HTML
+        for (i = 1; i < 6; i++) {
+            highTemps[i] = parseInt(response.daily[i].temp.max) + "F";
+        }
+        highTemps = highTemps.filter(item => item);
+        for (i = 0; i < highTemps.length; i++) {
+            $("#highday" + i).text("High: " + highTemps[i]);
+        }
+        // Do the same thing for the lowTemps:
+        for (i = 1; i < 6; i++){
+            lowTemps[i] = parseInt(response.daily[i].temp.min) + "F";
+        }
+        lowTemps = lowTemps.filter(item => item);
+        for (i = 0; i < lowTemps.length; i++) {
+            $("#lowday" + i).text("Low: " + lowTemps[i]);
+        }
+        // Same thing for Humidity: 
+        for (i = 1; i < 6; i++) {
+            futureHumidity[i] = response.daily[i].humidity + "%";
+        }
+        futureHumidity = futureHumidity.filter(item => item);
+        for (i = 0; i < futureHumidity.length; i++) {
+            $("#humday" + i).text("Humidity: " + futureHumidity[i]);
+        }
+        // Same thing for Wind Speed
+        for (i = 1; i < 6; i++) {
+            futureWindSpeed[i] = response.daily[i].wind_speed + "mph";
+        }
+        futureWindSpeed = futureWindSpeed.filter(item => item);
+        for (i = 0; i < futureWindSpeed.length; i++) {
+            $("#windspeed" + i).text("Wind Speed: " + futureWindSpeed[i]);
+        }
+        // Same thing for the icons, but specifying which icon to use on each day: 
+        for (i = 1; i < 6; i++) {
+            icons[i] = response.daily[i].weather[0].icon;
+        }
+
+        icons = icons.filter(item => item);
+
+        for (i = 0; i < icons.length; i++) {
+            iconsURL[i] = "https://openweathermap.org/img/w/" + icons[i] + ".png";
+        }
+
+        for (i = 0; i < iconsURL.length; i++) {
+            $("#icon" + i).attr({"src": iconsURL[i], "alt": "Daily Weather Icon"});
+        }
+        });
+    });
+}
 
 $(document).ready(function () {
     // if localStorage is not empty, call fillFromStorage()
